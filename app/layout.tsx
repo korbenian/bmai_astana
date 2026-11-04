@@ -13,15 +13,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bmai-astana.shop'),
+
   title: 'BMAI Astana — Официальный магазин спортивной обуви в Астане',
   description: 'Купить беговые кроссовки BMAI в Астане. Профессиональная обувь для бега, марафонов и трейла. Примерка в магазине.',
   keywords: ['BMAI', 'BMAI Астана', 'кроссовки Астана', 'беговая обувь', 'Pace 6.0', 'Fly 2.0'],
+
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   openGraph: {
     title: 'BMAI Astana — Магазин спортивной обуви',
     description: 'Примерь идеальную пару под твой темп в Астане!',
+    url: 'https://bmai-astana.shop',
+    siteName: 'BMAI Astana',
     type: 'website',
     locale: 'ru_RU',
   },
+
   verification: {
     google: '1h1iDpfniyCHoU_TI5A5KnaB6_DUaj119qiBVkvDTmk',
   },
