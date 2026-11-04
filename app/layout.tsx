@@ -22,12 +22,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
   },
-}
+  verification: {
+    google: '1h1iDpfniyCHoU_TI5A5KnaB6_DUaj119qiBVkvDTmk',
+  },
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="ru"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
