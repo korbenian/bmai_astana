@@ -16,7 +16,6 @@ function MainContent() {
   const lang = (searchParams.get('lang') as 'ru' | 'kk') || 'ru'
   const isKazakh = lang === 'kk'
 
-  // Словарик текстов для интерфейса
   const t = {
     official: isKazakh 
       ? 'Астанадағы BMAI ресми өкілі' 
@@ -37,21 +36,20 @@ function MainContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50/50">
-      
-      {/* ХЕДЕР */}
       <header className="w-full bg-white shadow-sm sticky top-0 z-50">
         <div className="flex w-full bg-blue-600 text-white text-xs md:text-sm py-2 px-4">
           <img 
-            className="h-[65px] w-[56px]" 
+            className="h-[65px] w-[56px] shrink-0" 
             src='/photos/logos.png' 
             alt="BMAI Logo"
           />  
-          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 w-full pl-2">
             
-            <p className="font-medium tracking-wide">
+            <p className="font-medium tracking-wide text-xs sm:text-sm max-w-[180px] sm:max-w-none">
               {t.official}
             </p>
 
+            {/* Блок для десктопа (lg и выше) */}
             <div className="hidden lg:flex items-center gap-6">
               <a href="tel:+77712133718" className="font-semibold hover:text-blue-100 transition-colors">
                 +7 (771) 213-37-18
@@ -64,7 +62,12 @@ function MainContent() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              {/* Переключатель языка для мобилок (виден до lg) */}
+              <div className="lg:hidden">
+                <LanguageSwitcher />
+              </div>
+
               <a 
                 href="https://www.instagram.com/bmai_astana/" 
                 target="_blank" 
@@ -84,18 +87,17 @@ function MainContent() {
                 <FaWhatsapp className="w-4 h-4 md:w-5 md:h-5" />
               </a>
             </div>
+
           </div>
         </div>
       </header>
 
-      {/* ОСНОВНОЙ КОНТЕНТ (Каталог + Сайдбар) */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
         <div className="w-full">
           <Card />
         </div>
       </main>
 
-      {/* ФУТЕР */}
       <footer className="w-full bg-blue-50/80 border-t border-blue-100 py-12 px-4 mt-auto">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 

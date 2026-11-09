@@ -9,14 +9,12 @@ export default function LanguageSwitcher() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Берем язык из URL, по умолчанию 'ru'
   const currentLang = (searchParams.get('lang') as Locale) || 'ru';
 
   const handleLanguageChange = (newLang: Locale) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('lang', newLang);
 
-    // Обновляем URL без перезагрузки всей страницы
     router.replace(`${pathname}?${params.toString()}`);
   };
 

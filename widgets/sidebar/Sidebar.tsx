@@ -15,7 +15,6 @@ export const CatalogSidebar = ({
   const lang = (searchParams.get('lang') as 'ru' | 'kk') || 'ru'
   const isKazakh = lang === 'kk'
 
-  // Список сезонов: value отвечает за фильтрацию в БД, label — за отображение
   const seasons = [
     { value: 'Демисезон', label: isKazakh ? 'Маусымаралық' : 'Демисезон' },
     { value: 'Лето', label: isKazakh ? 'Жаз' : 'Лето' },

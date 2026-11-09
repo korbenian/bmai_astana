@@ -1,6 +1,4 @@
 'use client'
-
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { useState } from 'react'
 
 interface ProductGalleryProps {
