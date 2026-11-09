@@ -3,22 +3,19 @@ import Link from "next/link";
 import { supabase } from "@/shared/supabase";
 import { useState, useEffect } from "react";
 import { CatalogSidebar } from "@/widgets/sidebar/Sidebar";
-
-
-
+import { useSearchParams } from "next/navigation";
 export const Card = () => {
   const [shoes, setShoes] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Стейт для хранения выбранных фильтров (пока только сезон)
   const [selectedSeason, setSelectedSeason] = useState<string[]>([])
-
-  // Функция переключения чекбокса
+const searchParams = useSearchParams();
+const lang = searchParams.get('lang') || 'ru'
   const toggleSeasonFilter = (seasonName: string) => {
     setSelectedSeason(prev => 
       prev.includes(seasonName)
-        ? prev.filter(s => s !== seasonName) // убираем, если уже был выбран
-        : [...prev, seasonName]              // добавляем, если не был выбран
+        ? prev.filter(s => s !== seasonName) 
+        : [...prev, seasonName]              
     )
   }
 
@@ -28,9 +25,8 @@ export const Card = () => {
         setLoading(true)
         let query = supabase.from('products').select('*')
 
-        // Если пользователь выбрал какие-то сезоны, фильтруем запрос
         if (selectedSeason.length > 0) {
-          // Переводим выбранные русские названия в кодовые слова базы (sun, mid-season)
+
           const dbValues = selectedSeason.map(s => [s]).filter(Boolean)
           
           if (dbValues.length > 0) {
@@ -52,15 +48,14 @@ export const Card = () => {
     }
 
     fetchProducts()
-  }, [selectedSeason]) // Перезапрашиваем товары каждый раз при изменении фильтра
+  }, [selectedSeason]) 
 
   if (loading) return <div className="text-center py-20 text-blue-600 font-medium">Загрузка каталога...</div>
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8 items-start">
-        
-        {/* Сайдбар с фильтрами (передаем состояние и функцию в пропсы) */}
+
         <div className="w-full lg:w-64 shrink-0">
           <CatalogSidebar 
             selectedSeason={selectedSeason} 
@@ -68,7 +63,6 @@ export const Card = () => {
           />
         </div>
 
-        {/* Сетка товаров */}
         <div className="flex-1 w-full">
           {shoes.length === 0 ? (
             <div className="text-center py-16 text-gray-400 bg-white rounded-2xl border border-gray-100">
@@ -99,7 +93,7 @@ export const Card = () => {
                   </div>
 
                   <Link 
-                    href={`/product/${shoe.id}`} 
+                   href={`/product/${shoe.id}?lang=${lang}`}
                     className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl text-center shadow-md shadow-blue-600/20 transition-all active:scale-[0.98]"
                   >
                     Подробнее

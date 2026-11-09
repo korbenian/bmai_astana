@@ -1,5 +1,6 @@
 'use client'
 
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { useState } from 'react'
 
 interface ProductGalleryProps {
@@ -13,7 +14,7 @@ export const ProductGallery = ({ images, name }: ProductGalleryProps) => {
 
   return (
     <div className="flex flex-col gap-4">
-  
+
       <div className="h-80 border rounded-2xl p-4 flex items-center justify-center bg-white">
         <img src={activeImage} alt={name} className="h-full object-contain" />
       </div>
