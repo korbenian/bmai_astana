@@ -5,7 +5,7 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Unbounded } from 'next/font/google' 
 import { useSearchParams } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-
+import Link from 'next/link';
 const unbounded = Unbounded({ 
   subsets: ['latin', 'cyrillic'],
   weight: ['700'] 
@@ -49,7 +49,6 @@ function MainContent() {
               {t.official}
             </p>
 
-            {/* Блок для десктопа (lg и выше) */}
             <div className="hidden lg:flex items-center gap-6">
               <a href="tel:+77712133718" className="font-semibold hover:text-blue-100 transition-colors">
                 +7 (771) 213-37-18
@@ -63,7 +62,6 @@ function MainContent() {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {/* Переключатель языка для мобилок (виден до lg) */}
               <div className="lg:hidden">
                 <LanguageSwitcher />
               </div>
@@ -99,44 +97,56 @@ function MainContent() {
       </main>
 
       <footer className="w-full bg-blue-50/80 border-t border-blue-100 py-12 px-4 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
-          <div className="max-w-2xl text-center md:text-left">
-            <h2 className={`${unbounded.className} text-blue-900 text-xl md:text-2xl font-semibold leading-tight mb-2`}>
-              {t.footerTitle}
-            </h2>
-            <p className="text-blue-700/80 text-sm md:text-base">
-              {t.footerSub}
-            </p>
-          </div>
+    <div className="max-w-2xl text-center md:text-left">
+      <h2 className={`${unbounded.className} text-blue-900 text-xl md:text-2xl font-semibold leading-tight mb-2`}>
+        {t.footerTitle}
+      </h2>
+      <p className="text-blue-700/80 text-sm md:text-base">
+        {t.footerSub}
+      </p>
+    </div>
 
-          <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
-              {t.contactUs}
-            </span>
-            <div className="flex gap-3">
-              <a 
-                href="https://www.instagram.com/bmai_astana/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white shadow-sm border border-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                <FaInstagram size={20} />
-              </a>
-              <a 
-                href="https://wa.me/77712133718"
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white shadow-sm border border-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                <FaWhatsapp size={20} />
-              </a>
-            </div>
-            <span className="text-xs text-gray-400 mt-1">© 2026 BMAI Astana</span>
-          </div>
+    <div className="flex flex-col items-center md:items-end gap-3 shrink-0">
+      <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+        {t.contactUs}
+      </span>
+      <div className="flex gap-3">
+        <a 
+          href="https://www.instagram.com/bmai_astana/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-10 h-10 rounded-full bg-white shadow-sm border border-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
+        >
+          <FaInstagram size={20} />
+        </a>
+    
+        <a 
+          href="https://wa.me/77712133718"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="w-10 h-10 rounded-full bg-white shadow-sm border border-blue-100 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
+        >
+          <FaWhatsapp size={20} />
+        </a>
+      </div>
 
-        </div>
-      </footer>
+      {/* Копирайт и аккуратная ссылка в админку в одну строку */}
+      <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
+        <span>© 2026 BMAI Astana</span>
+        <span>•</span>
+        <Link 
+          href="/admin" 
+          className="hover:text-blue-600 transition-colors"
+        >
+          Для администраторов
+        </Link>
+      </div>
+    </div>
+
+  </div>
+</footer>
       
     </div>
   )
